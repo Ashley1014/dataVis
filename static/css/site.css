@@ -4,6 +4,11 @@ body {
   margin-top: 0;
 }
 
+h3 {
+  color: cadetblue;
+  text-align: center;
+}
+
 /* FORM */
 .hidden {
   display: none !important;
