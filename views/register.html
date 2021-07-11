@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+  <title>注册页面</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/site.css">
+  <script src="../static/js/jquery-3.5.1.js" type="text/javascript"></script>
+  <script src="../static/js/validation.js" type="text/javascript" async></script>
+</head>
+<body>
+      <section>
+        <h3>注册表</h3>
+
+        <form id="ticketForm" action="/register" method="POST" novalidate>
+
+          <div id="userNameFeedback" class="formFeedback hidden">∗ 账号不能为空</div>
+          <div class="labelComponentPair">
+            <label for="userName">账号： </label>
+            <input id="userName" name="userName" required/>
+          </div>
+
+          <div id="pswFeedback" class="formFeedback hidden">∗ 密码不能为空</div>
+          <div class="labelComponentPair">
+            <label for="userPassword">密码： </label>
+            <input type="password" id="userPassword" name="userPassword" required/>
+          </div>
+
+          <div id="cpswFeedback" class="formFeedback hidden">∗ 确认密码不能为空</div>
+          <div id="cpswFeedback2" class="formFeedback hidden">∗ 确认密码需和密码一致!</div>
+          <div class="labelComponentPair">
+            <label for="cuserPassword">确认密码： </label>
+            <input type="password" id="cuserPassword" name="cuserPassword" required/>
+          </div>
+
+            <button type="submit" class="submit">注册</button>
+
+        </form>
+      </section>
+
+</body>
