@@ -34,6 +34,7 @@ func (c *LoginController) Post() {
 			c.Ctx.Output.Body([]byte("登录成功！"))
 		}
 		c.Ctx.Output.Body([]byte("密码不正确！"))
+	} else {
+		c.Redirect("../register",http.StatusFound)
 	}
-	c.Redirect("../register",http.StatusFound)
 }

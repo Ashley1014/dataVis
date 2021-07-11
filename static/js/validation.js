@@ -1,10 +1,8 @@
-console.log("loading...");
 // when user submits form ("On Form Submit Event" snippet):
 $("#ticketForm").on("submit", function() {
     let formValid = true;
 
-    // TODO: place all "check component validity snippets" here
-  // if name component is valid ("Check Component Validity" snippet):
+  // if name component is valid
     if( $("#userName").prop("validity").valid ) {
       // hide name feedback
         $("#userNameFeedback").addClass("hidden");
@@ -15,48 +13,47 @@ $("#ticketForm").on("submit", function() {
         formValid = false;
     }
 
-    // TODO: snippet(s) for if component data is valid
-    // if email component is valid ("Check Component Validity" snippet):
+    // if password component is valid
     if( $("#userPassword").prop("validity").valid ) {
-        // hide email feedback
+        // hide password feedback
         $("#pswFeedback").addClass("hidden");
     // else
     } else {
-        // show email feedback
+        // show password feedback
         $("#pswFeedback").removeClass("hidden");
         formValid = false;
     }
 
-    // if numTickets component is valid ("Check Component Validity" snippet):
+    // if confirmed password component is valid
     if( $("#cuserPassword").prop("validity").valid ) {
-        // hide Tickets feedback
+        // hide confirmed password feedback
         $("#cpswFeedback").addClass("hidden");
     // else
     } else {
-        // show numTickets feedback
+        // show confirmed password feedback
         $("#cpswFeedback").removeClass("hidden");
         formValid = false;
     }
 
-    //console.log("i'm here!")
-
+    // if confirmed password corresponds to password entered previously
     if( $("#userPassword").val()==$("#cuserPassword").val() ) {
         console.log("inside last if")
+        // hide confirmed password feedback
         $("#cpswFeedback2").addClass("hidden");
     } else {
+        // show confirmed password feedback
         $("#cpswFeedback2").removeClass("hidden");
         formValid = false;
     }
 
-    // send form to server if formValid is true (included as part of "On Form Submit Event" snippet)
+    // send form to server if formValid is true
     return formValid;
 });
 
 $("#loginForm").on("submit", function() {
     let formValid = true;
 
-    // TODO: place all "check component validity snippets" here
-    // if name component is valid ("Check Component Validity" snippet):
+    // if name component is valid
     if( $("#userName").prop("validity").valid ) {
         // hide name feedback
         $("#userNameFeedback").addClass("hidden");
@@ -67,18 +64,17 @@ $("#loginForm").on("submit", function() {
         formValid = false;
     }
 
-    // TODO: snippet(s) for if component data is valid
-    // if email component is valid ("Check Component Validity" snippet):
+    // if password component is valid
     if( $("#userPassword").prop("validity").valid ) {
-        // hide email feedback
+        // hide password feedback
         $("#pswFeedback").addClass("hidden");
         // else
     } else {
-        // show email feedback
+        // show password feedback
         $("#pswFeedback").removeClass("hidden");
         formValid = false;
     }
 
-    // send form to server if formValid is true (included as part of "On Form Submit Event" snippet)
+    // send form to server if formValid is true
     return formValid;
 });

@@ -12,8 +12,6 @@ type RegController struct {
 }
 
 func (c *RegController) Get() {
-	//c.Data["Website"] = "beego.me"
-	//c.Data["Email"] = "astaxie@gmail.com"
 	c.TplName = "register.html"
 }
 
@@ -29,10 +27,12 @@ func (c *RegController) Post() {
 	if !models.UserExists(o, name) {
 		err := models.InsertUser(o, name, password)
 		if err != nil {
-			return 
+			err.Error()
 		}
+		c.Ctx.Output.Body([]byte("注册成功！"))
+	} else {
+		c.Redirect("../login",http.StatusFound)
 	}
-	c.Redirect("../login",http.StatusFound)
 }
 
 
