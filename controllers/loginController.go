@@ -31,10 +31,19 @@ func (c *LoginController) Post() {
 			if err != nil {
 				return
 			}
-			c.Ctx.Output.Body([]byte("登录成功！"))
+			//c.Ctx.Output.Body([]byte("登录成功！"))
+			//c.Redirect("../view",http.StatusFound)
+			c.LoginSuccess(name)
+			return
 		}
 		c.Ctx.Output.Body([]byte("密码不正确！"))
 	} else {
 		c.Redirect("../register",http.StatusFound)
 	}
+}
+
+func (c *LoginController) LoginSuccess(name string) {
+	la := models.LoginAccount{Username: name}
+	c.Data["user"] = &la
+	c.TplName = "view.tpl"
 }
