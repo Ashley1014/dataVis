@@ -31,7 +31,23 @@
             <input type="password" id="cuserPassword" name="cuserPassword" required/>
           </div>
 
-            <button type="submit" class="submit">注册</button>
+          <div id="genderFeedback" class="formFeedback hidden">∗ 请选择您的性别</div>
+          <div class="labelComponentPair">
+            <label for="userGender">性别： </label>
+            <select id="userGender" name="userGender" class="validate[required]">
+              <option disabled="disabled" selected="" value="">请选择性别</option>
+              <option value="male">男</option>
+              <option value="female">女</option>
+            </select>
+          </div>
+
+          <div id="dobFeedback" class="formFeedback hidden">∗ 请选择您的生日 </div>
+          <div class="labelComponentPair">
+            <label for="userDob">生日： </label>
+            <input type="date" id="userDob" name="userDob" required/>
+          </div>
+
+          <button type="submit" class="submit">注册</button>
 
         </form>
       </section>

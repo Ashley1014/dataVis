@@ -23,13 +23,14 @@ func (c *RegController) Post() {
 	}
 	name := ra.Username
 	password := orm.CharField(ra.Password)
+	gender := ra.Gender
+	dob := ra.Dob
 	o := orm.NewOrm()
 	if !models.UserExists(o, name) {
-		err := models.InsertUser(o, name, password)
+		err := models.InsertUser(o, name, password, gender, dob)
 		if err != nil {
 			err.Error()
-		}
-		c.Ctx.Output.Body([]byte("注册成功！"))
+		} else {c.Ctx.Output.Body([]byte("注册成功！"))}
 	} else {
 		c.Redirect("../login",http.StatusFound)
 	}

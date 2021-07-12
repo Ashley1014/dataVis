@@ -36,13 +36,35 @@ $("#ticketForm").on("submit", function() {
     }
 
     // if confirmed password corresponds to password entered previously
-    if( $("#userPassword").val()==$("#cuserPassword").val() ) {
+    if( $("#userPassword").val()===$("#cuserPassword").val() ) {
         console.log("inside last if")
         // hide confirmed password feedback
         $("#cpswFeedback2").addClass("hidden");
     } else {
         // show confirmed password feedback
         $("#cpswFeedback2").removeClass("hidden");
+        formValid = false;
+    }
+
+    // if gender component is valid
+    if( $("userGender").val() !== "") {
+        // hide gender feedback
+        $("#genderFeedback").addClass("hidden");
+        // else
+    } else {
+        // show gender feedback
+        $("#genderFeedback").removeClass("hidden");
+        formValid = false;
+    }
+
+    // if birthday component is valid
+    if( $("#userDob").prop("validity").valid ) {
+        // hide birthday feedback
+        $("#dobFeedback").addClass("hidden");
+        // else
+    } else {
+        // show birthday feedback
+        $("#dobFeedback").removeClass("hidden");
         formValid = false;
     }
 

@@ -14,12 +14,16 @@ type User struct {
 	Password orm.CharField `orm:"size(60)"`
 	LoginTime time.Time
 	RegTime time.Time
+	Gender string
+	Dob orm.DateField `orm:"null"`
 }
 
 type RegAccount struct {
 	Username string `form:"userName"`
 	Password string `form:"userPassword"`
 	CfmPassword string `form:"cuserPassword"`
+	Gender string `form:"userGender"`
+	Dob time.Time `form:"userDob"`
 }
 
 type LoginAccount struct {
@@ -52,8 +56,15 @@ func init() {
 	}
 }
 
-func InsertUser(o orm.Ormer, name string, psw orm.CharField) error {
-	user := User{Username:name, Password: psw, LoginTime: time.Now(), RegTime: time.Now()}
+func toDate(t time.Time) orm.DateField {
+	date := orm.DateField(t)
+	return date
+}
+
+func InsertUser(o orm.Ormer, name string, psw orm.CharField, gender string, dob time.Time) error {
+	var date orm.DateField
+	date = toDate(dob)
+	user := User{Username:name, Password: psw, LoginTime: time.Now(), RegTime: time.Now(), Gender: gender, Dob: date}
 	_, err := o.Insert(&user)
 	if err != nil {
 		return err
