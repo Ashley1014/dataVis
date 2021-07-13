@@ -55,3 +55,16 @@ form {
   margin-left: auto;
 }
 
+/* VIEW */
+#main, #side {
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+p {
+  text-align: center;
+  font-size: small;
+  color: cadetblue;
+}
+

@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"dataVis/models"
+	"fmt"
 	"github.com/beego/beego/v2/client/orm"
 	beego "github.com/beego/beego/v2/server/web"
 	"net/http"
@@ -31,8 +32,6 @@ func (c *LoginController) Post() {
 			if err != nil {
 				return
 			}
-			//c.Ctx.Output.Body([]byte("登录成功！"))
-			//c.Redirect("../view",http.StatusFound)
 			c.LoginSuccess(name)
 			return
 		}
@@ -43,7 +42,17 @@ func (c *LoginController) Post() {
 }
 
 func (c *LoginController) LoginSuccess(name string) {
+	o := orm.NewOrm()
 	la := models.LoginAccount{Username: name}
+	ma := models.AgeMap{}
+	female := models.GetNumber(o,"gender", "female")
+	male := models.GetNumber(o, "gender", "male")
+	agelist := models.GetAges(o)
+	ma.CreateAgeMap(agelist)
+	fmt.Println(ma)
 	c.Data["user"] = &la
-	c.TplName = "view.tpl"
+	c.Data["female"] = female
+	c.Data["male"] = male
+	c.Data["age"] = &ma
+	c.TplName = "view.html"
 }

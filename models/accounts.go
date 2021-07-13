@@ -31,6 +31,12 @@ type LoginAccount struct {
 	Password string `form:"userPassword"`
 }
 
+type AgeMap struct {
+	Teen int
+	Adult int
+	Elderly int
+}
+
 func fetchConfig(key string) string {
 	config, _ := web.AppConfig.String(key)
 	return config
@@ -64,7 +70,7 @@ func toDate(t time.Time) orm.DateField {
 func InsertUser(o orm.Ormer, name string, psw orm.CharField, gender string, dob time.Time) error {
 	var date orm.DateField
 	date = toDate(dob)
-	user := User{Username:name, Password: psw, LoginTime: time.Now(), RegTime: time.Now(), Gender: gender, Dob: date}
+	user := User{Username: name, Password: psw, LoginTime: time.Now(), RegTime: time.Now(), Gender: gender, Dob: date}
 	_, err := o.Insert(&user)
 	if err != nil {
 		return err
@@ -96,6 +102,50 @@ func UpdateLoginTime(o orm.Ormer, name string) error {
 	_, err := o.QueryTable("user").Filter("username", name).Update(orm.Params{"login_time": time.Now()})
 	return err
 }
+
+func GetNumber(o orm.Ormer, colName string, colValue string) int64 {
+	var users []User
+	num, err := o.QueryTable("user").Filter(colName, colValue).All(&users)
+	if err != nil {
+		err.Error()
+		return 0
+	}
+	return num
+}
+
+func GetAges(o orm.Ormer) []int {
+	var users []User
+	//var year int
+	num, err := o.QueryTable("user").All(&users)
+	agelist := make([]int, num)
+	var maps []orm.Params
+	_, err = o.QueryTable("user").Values(&maps)
+	if err != nil {
+		err.Error()
+	}
+	for i, m := range maps {
+		if date, ok := m["Dob"].(time.Time); ok {
+			year := date.Year()
+			age := time.Now().Year() - year
+			agelist[i] = age
+		}
+	}
+	return agelist
+}
+
+func (m *AgeMap) CreateAgeMap(agelist []int) {
+	for _, v := range agelist {
+		if v <= 18 {
+			m.Teen+=1
+		} else if v <= 65 {
+			m.Adult+=1
+		} else {
+			m.Elderly+=1
+		}
+	}
+}
+
+
 
 
 
