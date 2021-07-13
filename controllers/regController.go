@@ -4,7 +4,6 @@ import (
 	"dataVis/models"
 	"github.com/beego/beego/v2/client/orm"
 	beego "github.com/beego/beego/v2/server/web"
-	"net/http"
 )
 
 type RegController struct {
@@ -32,7 +31,7 @@ func (c *RegController) Post() {
 			err.Error()
 		} else {c.Ctx.Output.Body([]byte("注册成功！"))}
 	} else {
-		c.Redirect("../login",http.StatusFound)
+		c.Ctx.Output.Body([]byte("用户已存在！"))
 	}
 }
 
