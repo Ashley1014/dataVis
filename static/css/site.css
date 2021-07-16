@@ -88,11 +88,6 @@ table {
   font-size: large;
 }
 
-#lib_login {
-  position: absolute;
-  top: 10px;
-  right: 5px;
-}
 #add_playlist {
   position: absolute;
   bottom: 2%;
@@ -109,6 +104,14 @@ table {
 #lib_logout {
   position: absolute;
   top: 50px;
+  right: 5px;
+}
+
+#login_reg {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 10px;
   right: 5px;
 }
 

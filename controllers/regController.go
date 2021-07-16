@@ -29,9 +29,9 @@ func (c *RegController) Post() {
 		err := models.InsertUser(o, name, password, gender, dob)
 		if err != nil {
 			err.Error()
-		} else {c.Ctx.Output.Body([]byte("We're glad to have you here!"))}
+		} else {c.Redirect("../login",302)}
 	} else {
-		c.Ctx.Output.Body([]byte("User already exists!"))
+		c.Redirect("../login",302)
 	}
 }
 

@@ -9,7 +9,11 @@
 {{if .is_logged_in}}
     <div><label id="login_name">Welcome, {{.User.Username}}</label></div>
     <div><button type="button" id="lib_logout" onclick="location.href='../logout'">Log out</button></div>
-{{ else }} <button id="lib_login" onclick="location.href='../login'">Log in</button>
+{{ else }}
+<div id="login_reg">
+    <div><button id="lib_login" onclick="location.href='../login'">Log in</button></div>
+    <div><button id="lib_register" onclick="location.href='../register'">Sign up</button></div>
+</div>
 {{end}}
 <h1> Browse Music </h1>
 <table>
