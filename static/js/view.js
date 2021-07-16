@@ -6,12 +6,12 @@ $(document).ready(function() {
         let option = {
             series: [
                 {
-                    name: '性别统计',
+                    name: 'gender stats',
                     type: 'pie',
                     radius: '55%',
                     data: [
-                        {value: female, name: '女性'},
-                        {value: male, name: '男性'},
+                        {value: female, name: 'female'},
+                        {value: male, name: 'male'},
                     ]
                 }
             ]
@@ -27,13 +27,13 @@ $(document).ready(function() {
         let option = {
             series: [
                 {
-                    name: '年龄统计',
+                    name: 'age stats',
                     type: 'pie',
                     radius: '55%',
                     data: [
-                        {value: teen, name: '青少年'},
-                        {value: adult, name: '成年人'},
-                        {value: elderly, name: '老年人'}
+                        {value: teen, name: 'teenager'},
+                        {value: adult, name: 'adult'},
+                        {value: elderly, name: 'elderly'}
                     ]
                 }
             ]

@@ -78,8 +78,8 @@ func InsertUser(o orm.Ormer, name string, psw orm.CharField, gender string, dob 
 	return nil
 }
 
-func UserExists(o orm.Ormer, name string) bool {
-	return o.QueryTable("user").Filter("Username", name).Exist()
+func UserExists(o orm.Ormer, tableName string, name string) bool {
+	return o.QueryTable(tableName).Filter("Username", name).Exist()
 }
 
 func GetPassword(o orm.Ormer, name string) string {
@@ -103,6 +103,18 @@ func UpdateLoginTime(o orm.Ormer, name string) error {
 	return err
 }
 
+func GetUserInfo(o orm.Ormer, name string) *User {
+	var users []User
+	_, err := o.QueryTable("user").Filter("Username", name).All(&users)
+	if err != nil {
+		return nil
+	}
+	return &users[0]
+}
+
+/*
+The following methods are for the purpose of data visualization.
+ */
 func GetNumber(o orm.Ormer, colName string, colValue string) int64 {
 	var users []User
 	num, err := o.QueryTable("user").Filter(colName, colValue).All(&users)

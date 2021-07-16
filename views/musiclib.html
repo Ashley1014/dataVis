@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Music Management System</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/site.css">
+    <script src="../static/js/jquery-3.5.1.js" type="text/javascript"></script>
+</head>
+<body>
+{{if .is_logged_in}}
+    <div><label id="login_name">Welcome, {{.User.Username}}</label></div>
+    <div><button type="button" id="lib_logout" onclick="location.href='../logout'">Log out</button></div>
+{{ else }} <button id="lib_login" onclick="location.href='../login'">Log in</button>
+{{end}}
+<h1> Browse Music </h1>
+<table>
+    <tr id="table_heading">
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>Year</th>
+        <th>Genre</th>
+        <th>Select</th>
+    </tr>
+    <tr>
+        <td>Kiss Me More</td>
+        <td>Doja Cat</td>
+        <td>Kiss Me More-single</td>
+        <td>2021</td>
+        <td>Pop</td>
+        <td><input type="checkbox" id="select1" name="select1" />&nbsp;</td>
+    </tr>
+    <tr>
+        <td>Youth</td>
+        <td>Trevor Daniel</td>
+        <td>Homesick-EP</td>
+        <td>2018</td>
+        <td>Pop</td>
+        <td><input type="checkbox" id="select2" name="select2" />&nbsp;</td>
+    </tr>
+    <tr>
+        <td>Don't Cry</td>
+        <td>Guns N' Roses</td>
+        <td>Greatest Hits</td>
+        <td>1991</td>
+        <td>Hard Rock</td>
+        <td><input type="checkbox" id="select3" name="select3" />&nbsp;</td>
+    </tr>
+    <tr>
+        <td>About a Girl</td>
+        <td>Nirvana</td>
+        <td>Bleach</td>
+        <td>1989</td>
+        <td>Alternative</td>
+        <td><input type="checkbox" id="select4" name="select4" />&nbsp;</td>
+    </tr>
+</table>
+
+<button type="submit" id="add_playlist" class="submit">Add to playlist</button>
+
+
+
+
+
+</body>

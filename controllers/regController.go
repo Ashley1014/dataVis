@@ -25,13 +25,13 @@ func (c *RegController) Post() {
 	gender := ra.Gender
 	dob := ra.Dob
 	o := orm.NewOrm()
-	if !models.UserExists(o, name) {
+	if !models.UserExists(o, "user", name) {
 		err := models.InsertUser(o, name, password, gender, dob)
 		if err != nil {
 			err.Error()
-		} else {c.Ctx.Output.Body([]byte("注册成功！"))}
+		} else {c.Ctx.Output.Body([]byte("We're glad to have you here!"))}
 	} else {
-		c.Ctx.Output.Body([]byte("用户已存在！"))
+		c.Ctx.Output.Body([]byte("User already exists!"))
 	}
 }
 
