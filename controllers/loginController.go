@@ -84,7 +84,7 @@ func (c *LoginController) ManageUserSession() {
 		}
 	} else {
 		user := models.GetUserInfo(o, name)
-		err := c.SetSession("user", user)
+		err := c.SetSession("user", user.Username)
 		if err != nil {
 			err.Error()
 			return
